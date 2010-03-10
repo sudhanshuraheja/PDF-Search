@@ -85,6 +85,7 @@
 				foreach($files as $selected) {
 					$results[$selected['id']]['id'] = $selected['id'];
 					$results[$selected['id']]['name'] = $selected['name'];
+					$results[$selected['id']]['link'] = $selected['link'];
 				}
 
 				$this->set('results', $results);

@@ -56,27 +56,9 @@
 			// Please mention which tables would you like to create an admin for
 			$this->checkIfUserLoggedIn();
 			$this->useTables(array(
-				'accounts',
-				'account_authentication',
-				'activity',
-				'authentication',
-				'bullet_list',
-				'college',
-				'company',
-				'company_college',
-				'invites',
-				'job_meta',
-				'job_profiles',
-				'job_profle_search_criteria',
-				'lists',
-				'list_company',
-				'list_institute',
-				'list_university',
-				'shortlisted_institutes',
-				'shortlisted_student',
-				'student',
-				'student_bullets',
-				'student_resume',
+				'files',
+				'indexes',
+				'searches',
 				'gtx_users'
 			));
 

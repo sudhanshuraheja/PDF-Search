@@ -38,16 +38,28 @@
 		public function base() {
 			$submit = isset($_GET['submit']) ? true : false;
 			$link = isset($_GET['link']) ? $_GET['link'] : false;
+			$message = 'Add the link below';
 
 			if($submit && $link) {
+				$link_explode = explode('/', $link);
 				$file = new files($this->getDb());
-				$file->insert(array(
-					'name' => '',
-					'link' => $link
-				));
+
+				$added = $file->select('*', 'WHERE link="' . $link . '"');
+				if(!isset($added[0]['id'])) {
+					$file->insert(array(
+						'name' => urldecode($link_explode[count($link_explode) - 1]),
+						'approved' => 0,
+						'downloaded' => 0,
+						'created' => time(),
+						'link' => $link
+					));
+					$message = 'Successfully Added! You can add another link below';
+				} else {
+					$message = 'This link is already in the index. You can add another link below';
+				}
 			}
 
-			$this->set('message', 'Data added successfully');
+			$this->set('message', $message);
 		}
 
 	}

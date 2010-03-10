@@ -43,6 +43,9 @@
 		public function createIndexes() {
 		}
 
+		public function downloadFiles() {
+		}
+
 	}
 
 ?>

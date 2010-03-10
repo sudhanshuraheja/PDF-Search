@@ -70,6 +70,19 @@
 			}
 		}
 
+		public function downloadFiles() {
+			$present_working_directory = getcwd();
+			chdir(BOOKS_PATH);
+			$file = new files($this->getDb());
+			$download = $file->select('*', 'WHERE downloaded=0 AND approved=1 ORDER BY id');
+			foreach($download as $dl) {
+				if(!file_exists(BOOKS_PATH . $dl['name'])) {
+					exec(escapeshellcmd('wget ' . $dl['link']));
+				}
+			}
+			chdir($present_working_directory);
+		}
+
 		public function createText() {
 			$present_working_directory = getcwd();
 			chdir(BOOKS_PATH);
@@ -84,6 +97,10 @@
 							$new_file_name = $this->getFileName($this->sanitize($file));
 							if($new_file_name != $file) {
 								rename(BOOKS_PATH . $file, BOOKS_PATH . $new_file_name . '.pdf');
+								$db_file = new files($this->getDb());
+								$db_file->update(array(
+									'name' => $new_file_name . '.pdf'
+								), 'WHERE name="' . $file . '"');
 							}
 							if(!file_exists($new_file_name . '.txt')) {
 								exec(escapeshellcmd('pdftotext -nopgbrk ' . $new_file_name . '.pdf ' . $new_file_name . '.txt'));
@@ -115,13 +132,13 @@
 						display($file);
 
 						if(
+							($file_id != '') &&
 							(filetype(BOOKS_PATH . $file) == 'file') &&
 							($this->getFileType($file) == 'txt') &&
 							(!$this->areIndexesDefined($file_id))
 						) {
 
 							$data = $this->readFile($file);
-							//$data = 'hello hello bye';
 							$data = $this->sanitizeWithSpace($data);
 							$indexes = str_word_count($data, 1, '0123456789');
 
@@ -149,13 +166,18 @@
 		}
 
 		private function getFileId($file_name) {
+			if($file_name == '')
+				return;
+
 			$file = new files($this->getDb());
 
 			$file_id = false;
-			$files = $file->select('*', 'WHERE name="' . $file_name . '"');
+			$files = $file->select('*', 'WHERE name="' . $file_name . '" OR name="' . $file_name . '.pdf" ');
 			if(!isset($files[0]['id'])) {
 				$id_array = $file->insert(array(
 					'name' => $file_name,
+					'approved' => 1,
+					'downloaded' => 1,
 					'created' => time()
 				));
 				$file_id = $id_array[0][1];

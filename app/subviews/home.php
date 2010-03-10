@@ -2,10 +2,14 @@
 
 <?php $search = $this->get('search'); ?>
 
+	<br /><br />&nbsp;
 	<div class='span-24'>
-		<br /><br />
+		<div class='span-16'>Type in your search query below</div>
+		<div class='span-8 last right'><a href='<?php echo href('/add') ?>'>Click here to add a PDF</a></div>
+	</div>
+
+	<div class='span-24'>
 		<form method='get' action=''>
-			Type in your search query below<br />
 			<input type='text' name='q' value='<?php echo $search; ?>' class='searchInput' />
 		</form>
 		<br />&nbsp;
@@ -19,15 +23,16 @@
 		$count++;
 		$class = ( ($count % 2) == 0 ) ? '' : 'odd';
 		$max_score = ($result['score'] > $max_score) ? $result['score'] : $max_score;
+		$link = ( isset($result['link']) && ($result['link'] != '')) ? $result['link'] : 'http://www.google.com/search?q=' . urlencode($result['name'] . ' filetype:pdf');
 ?>
 
 	<div class='span-24 slot <?php echo $class; ?>'>
 		<div class='span-2 number'><?php echo $count; ?>.</div>
 		<div class='span-18'>
-			<div class='span-18 last title'><?php echo $result['name']; ?></div>
+			<div class='span-18 last title'><?php echo str_replace('-', ' ', $result['name']); ?></div>
 			<div class='span-18 last'>
 				<div class='span-3 download'><a target='_blank' href='<?php echo href('/public/books/' . $result['name'] . '.txt') ?>'>Download Text</a></div>
-				<div class='span-3 download'><a target='_blank' href='<?php echo href('/public/books/' . $result['name'] . '.pdf') ?>'>Download PDF</a></div>
+				<div class='span-3 download'><a target='_blank' href='<?php echo $link; ?>'>Download PDF</a></div>
 				<div class='span-12 last'>&nbsp;</div>
 			</div>
 		</div>

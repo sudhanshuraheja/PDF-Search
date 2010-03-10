@@ -7,7 +7,23 @@
 				"name" => "varchar_1024",
 				"link" => "varchar_1024",
 				"approved" => "int",
+				"downloaded" => "int",
 				"created" => "int"
+      ));
+    }
+  }
+
+  class gtx_users extends Model {
+    public function __construct($database) {
+      $this->construct($database, "gtx_users", array(
+				"id" => "int",
+				"username" => "varchar_64",
+				"password" => "varchar_64",
+				"email" => "varchar_64",
+				"lastlogin" => "varchar_32",
+				"ip" => "varchar_32",
+				"name" => "varchar_64",
+				"hash" => "varchar_64"
       ));
     }
   }
