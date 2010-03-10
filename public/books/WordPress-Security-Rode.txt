@@ -1,0 +1,223 @@
+Randall Rode - 2009 - rodeworks.com
+
+1
+
+SECURING WORDPRESS
+Randall Rode
+
+Security Vulnerabilities
+2
+
+University address offers trusted domain and high-volume internet access – attractive to spammers. Properly maintained and configured WordPress installations are very secure – i.e. WordPress.com . “Create” efforts from faculty, students and other users can complicate the security footprint.
+Randall Rode - 2009 - rodeworks.com
+
+General Considerations
+3
+
+Maintain regular server/software updates
+Apache, PHP, MySQL, MyPHPAdmin
+
+Implement best security practices for core software
+Apache: i.e. No directory browsing (wp-content/plugins) PHP: i.e. No error messages
+
+Have Monitoring tools in place
+Regularly check web sites
+
+Implement service level agreement
+Do users expect content to stay up forever? What is the lifecycle? When archive it to an html site (http://www.httrack.com/)?
+
+Minimize security footprint
+Only keep content that is actively being used Only allow access that is specifically required
+Randall Rode - 2009 - rodeworks.com
+
+WordPress Security Principles
+4
+
+Avoid default settings
+Reset table names Rename default admin account
+
+Implement security standards
+Restrict database user account Force https for user log-in
+
+Restrict public access
+Restrict wp-admin access by IP Deny *.php files in wp-content, wp-config.php
+
+Remove unneeded files
+Readme.html, license.txt, etc., inactive plug-ins/themes
+Randall Rode - 2009 - rodeworks.com
+
+Installing WordPress
+5
+
+At least 2 options
+Do it yourself – create the database, create a database user account, upload the WP files, configure wp-config.php, run the installer Run an installer script – i.e. Fantastico, Dreamhost – Most common with commercial web host accounts
+
+Security through plug-ins
+Blogsecurity.net, wpsecurity.net
+Randall Rode - 2009 - rodeworks.com
+
+Step 1 – create directory
+6
+
+775 should be sufficient folder setting for most server configuration s 644 for files
+Randall Rode - 2009 - rodeworks.com
+
+Step 2 -- set up data user account
+7
+
+Randall Rode - 2009 - rodeworks.com
+
+Step 3 – create database, access
+8
+
+Randall Rode - 2009 - rodeworks.com
+
+WordPress Install
+9
+
+Download latest WordPress from wordpress.org/download Rename wp-config-sample.php to wpconfig.php Configure wp-config.php
+Enter database name, db user name, db user password in appropriate lines Customize table name, key settings, add forced SSL
+Randall Rode - 2009 - rodeworks.com
+
+Wp-config.php notes
+10
+
+/*
+
+*/
+
+Comment out for initial install – then add back
+
+Randall Rode - 2009 - rodeworks.com
+
+Upload WordPress
+11
+
+First remove unneeded files:
+Readme.html, license.txt, wpcontent/plugins/hello.php, etc.
+
+Upload to web server Run http://siteaddress/wp-admin/install.php After install complete uncomment secure FTP line in wp-config.php
+
+Randall Rode - 2009 - rodeworks.com
+
+htaccess
+12
+
+Special server file used to control server behaviors Will create our own special ones for the main directory, /wp-content and /wp-admin I prefer to manually edit this and not allow WordPress to access them.
+
+Randall Rode - 2009 - rodeworks.com
+
+Htaccess for /wp-admin
+13
+
+Limit access to a range of, or specific IP addresses
+
+Randall Rode - 2009 - rodeworks.com
+
+Htaccess for wp-content, wpincludes
+14
+
+Restrict access to certain file types
+
+Randall Rode - 2009 - rodeworks.com
+
+Htaccess for main directory
+15
+
+Set friendly URLs Restrict access to wp-config.php
+
+Randall Rode - 2009 - rodeworks.com
+
+Customize file uploads
+16
+
+Principle – change defaults!
+
+Add .htaccess restriction to limit executable file types as you did with wp-content.
+
+Randall Rode - 2009 - rodeworks.com
+
+Hide WordPress version tag
+17
+
+Header includes WordPress version number – can be exploited by hackers – the more they have to guess the better! Add command to functions.php for selected theme:
+
+Randall Rode - 2009 - rodeworks.com
+
+User accounts
+18
+
+Create admin-only accounts and editor accounts for every day use. Get more granular control over user permissions through a plug-in such as Role Manager (http://www.im-web-gefunden.de/wordpress-plugins/role-manager/)
+Not listed in WordPress plug-in repository (http://wordpress.org/support/topic/200087) and not listed as working with 2.7, but seems to be OK.
+
+Always limit users to fewest permissions – it is always easy to add, not always easy to remember to delete
+Randall Rode - 2009 - rodeworks.com
+
+Comments
+19
+
+Comment spam is a huge problem Use Akismet, SpamBam (BlogSecurity) plugins Consider limiting comments
+Turn comments off by default Comments only by logged in users – no user selfregistration Require all comments to be held for moderation Require user name/email address/ registration Employ a Captcha device (plug-in)
+Randall Rode - 2009 - rodeworks.com
+
+Plug-ins to consider
+20
+
+BlogSecurity.net
+WPIDS – Detect Intrusions
+http://blogsecurity.net/wordpress/wpids-wordpress-intruder-detection-system/
+
+WordPress Online Security Scanner
+http://blogsecurity.net/wordpress/news-140707/
+
+SpamBam
+http://blogsecurity.net/wordpress/spambam-comment-anti-spam-plugin/
+
+Maximum Security
+http://wpsecurity.net/
+
+Randall Rode - 2009 - rodeworks.com
+
+Keep WordPress/plugins updated
+21
+
+Randall Rode - 2009 - rodeworks.com
+
+Keep full WordPress backups
+22
+
+Back up the database
+Manual export through tool like PHPmyAdmin Through WordPress plug-in such as:
+http://www.ilfilosofo.com/blog/wp-db-backup
+
+Export through WordPress admin panel – can also be used to transfer – only content, not settings
+
+Back up the file structure
+Should be part of standard server maintenance Can export locally via FTP program
+Randall Rode - 2009 - rodeworks.com
+
+Review themes/plug-ins
+23
+
+Themes include programming (functions.php) and can utilize vulnerable code Look for plug-ins and themes from official WordPress repository Write/design your own
+(http://codex.wordpress.org/Writing_a_Plugin, http://www.devlounge.net/extras/how-to-write-a-wordpress-plugin )
+
+Check security updates – i.e. Secunia Advisories,
+http://secunia.com/advisories/search/?search=WordPress
+
+Read/subscribe to developer blogs
+http://lorelle.wordpress.com, http://blogsecurity.net, http://wordpress.org/development/
+Randall Rode - 2009 - rodeworks.com
+
+Randall Rode - 2009 - rodeworks.com
+
+References
+24 Used in this presentation:
+•WordPress Security Whitepaper, Blogsecurity.net, Philipp Heinze - Primary Author, David Kierznowski - Co-author •http://blogsecurity.net/wordpress/wordpress-security-whitepaper/ •11 Best Ways to Improve WordPress Security, Pro Blog Design, Hendry Lee, http://www.problogdesign.com/wordpress/11-best-ways-to-improve-wordpress-security/ •WordPress Security -- How to Install WordPress Securely, BlogBuildingU.com, Hendry Lee, http://blogbuildingu.com/wordpress/install-wordpress-securely
+
+Other resources:
+•Maximum WordPress Security, Weblog Tools Collection, Jeff Chandler, http://weblogtoolscollection.com/archives/2009/01/03/maximum-wordpress-security/, AudioCast •Wordpress Security Tips and Hacks, Noupe.com •http://www.noupe.com/how-tos/wordpress-security-tips-and-hacks.html •WordPress Tips Part 1, wpdesigner.com •http://www.wpdesigner.com/2008/01/30/wordpress-tips-part-1/ •9 easy ways to secure your WordPress blog, SimpleHelp.net, Ross McKillop, 9/10/09, http://www.simplehelp.net/2007/09/10/9-ways-to-secure-your-wordpress-blog/ •WordPress Security Predictions in 2009, Blogsecurity.net, David Kierznowski, •http://blogsecurity.net/wordpress/wordpress-security-predictions-in-2009/ •WordPress Security Prevention, Reactions, and Scares, Lorelle on WordPress, Lorelle VanFossen •http://lorelle.wordpress.com/2008/04/28/wordpress-security-prevention-reactions-and-scares/ •SecurityFocus SQL Injection Bogus, Ma.tt, Matt Mullenweg, •http://ma.tt/2008/04/securityfocus-sql-injection-bogus/ •WordPress Security with Mark Jaquith, WordCamp Toronto 2008, http://vimeo.com/1893250?pg=embed&sec=1893250, VIDEO
+
+Resources:
+•National Vulnerability Database, search page, http://web.nvd.nist.gov/view/vuln/search: NVD is the U.S. government repository of standards based vulnerability management data represented using the Security Content Automation Protocol (SCAP). This data enables automation of vulnerability management, security measurement, and compliance. NVD includes databases of security checklists, security related software flaws, misconfigurations, product names, and impact metrics. •Secunia Advisories, http://secunia.com/advisories/search/?search=WordPress
+

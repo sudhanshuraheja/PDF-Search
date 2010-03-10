@@ -1,0 +1,28 @@
+liquidicity
+
+WordPress Help Sheet.
+Basic Template Files PHP Snippets for Header <?php bloginfo('name'); ?> <?php wp_title(); ?> <?php bloginfo('stylesheet_url'); ?> <?php bloginfo('pingback_url'); ?> <?php bloginfo('template_url'); ?> <?php bloginfo('version'); ?> <?php bloginfo('atom_url'); ?> <?php bloginfo('rss2_url'); ?> <?php bloginfo('url'); ?> <?php bloginfo('name'); ?> <?php bloginfo('html_type'); ?> <?php bloginfo('charset'); ?>
+Title of the site Title of the specific post or page The style.css file's location Pingback URL for the site Location for the site’s theme files WordPress version for the site Atom URL for the site RSS2 URL for the site Exact URL for the site Name of the site HTML version of the site Charset parameter of the site
+
+style.css index.php single.php archive.php searchform.php search.php 404.php comments.php footer.php header.php sidebar.php page.php
+
+Style sheet file Home page file Single post page file Archive/category file Search form file Search content file Error page file Comments template file Footer content file Header content file Sidebar content file Single page file
+
+PHP Snippets for Templates <?php the_content(); ?> <?php if(have_posts()) : ?> <?php while(have_posts()) : the_post(); ?> <?php endwhile; ?> <?php endif; ?> Lists <?php get_header(); ?> <?php get_sidebar(); ?> <?php get_footer(); ?> <?php the_time('m-d-y') ?> <?php comments_popup_link(); ?> <?php the_title(); ?> <?php the_permalink() ?> <?php the_category(', ') ?> <?php the_author(); ?> <?php the_ID(); ?> <?php edit_post_link(); ?> <?php get_links_list(); ?> <?php comments_template(); ?> <?php wp_list_pages(); ?> <?php wp_list_cats(); ?> <?php next_post_link(' %link ') ?> <?php previous_post_link('%link') ?> <?php get_calendar(); ?> <?php wp_get_archives() ?> <?php posts_nav_link(); ?> <?php bloginfo(’description’); ?>
+1
+
+Extra Stuff
+/%postname%/ header.php Custom permalinks
+
+Content of the posts Checks if there are posts Shows posts if posts are available Closes the 'while' PHP function Closes the 'if' PHP function Header.php file's content Sidebar.php file's content Footer.php file's content The date in '08-18-07' format Link for the comments on the post Title of a specific post or page Url of a specific post or page Category of a specific post or page Author of a specific post or page ID of a specific post or page Link to edit a specific post or page Links from the blogroll Comment.php file’s content List of pages of the List of categories for the site Url to the next post Url to the previous post The built-in calendar List of archives for the site Next and previous post link Site’s description
+
+s i <?php include(TEMPLATEPATH . ‘/x’); ?> d 1 e Include any file b <?php the_search_query(); ?> a index.php r . Value for search form p h <?php _e(’Message’); ?> p Prints out message <?php wp_register(); ?> footer.php Displays the register link <?php wp_loginout(); ?> Displays the login/logout link 2 <!--next page--> Divides the content into pages <!--more--> Cuts off the content and adds a link to the rest of the content <?php wp_meta(); ?> Meta for administrators <?php timer_stop(1); ?> Time to load the page <?php echo get_num_queries(); ?> Queries to load the page
+
+Replace x with file name
+
+2
+
+Only for registered useres
+
+© 2007 Go Squared Ltd. & WPCandy
+
