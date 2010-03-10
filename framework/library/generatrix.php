@@ -1915,6 +1915,9 @@ Welcome to the Generatrix help. You can use any of the following options
 		if(file_exists($config_file)) {
 			$config = (array) json_decode(file_get_contents($config_file));
 
+			if(count($config) == 0)
+				display_error('Config.json was not loaded. Please check if it is valid JSON');
+
 			foreach($config as $key => $value) {
 				$define_element_key = str_replace("-", "_", strtoupper($key));
 				$define_element_value = $value;

@@ -1,5 +1,5 @@
 {
-	"application-root"		: "http://office.vxtindia.net/bookstore/",
+	"application-root"		: "http://localhost:8080/PDF-Search/",
 
 	"application-name"		: "Bookstore",
 	"application-email"		: "server@vxtindia.com",
@@ -15,7 +15,7 @@
 
 	"database-host"				: "localhost",
 	"database-user"				: "root",
-	"database-pass"				: "root",
+	"database-pass"				: "password",
 	"database-name"				: "bookstore",
 	"database-prefix"			: "",
 
@@ -24,7 +24,7 @@
 	"cache-pages"					: "false",
 	"cache-pages-time"		: "5",
 
-	"books-path"					: "/var/www/bookstore/public/books/",
+	"books-path"					: "/var/www/PDF-Search/public/books/",
 
 	"js-jquery"						: "1.3.2",
 	"js-jqueryui"					: "",
