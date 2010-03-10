@@ -12,6 +12,15 @@
 		<form method='get' action=''>
 			<input type='text' name='q' value='<?php echo $search; ?>' class='searchInput' />
 		</form>
+		<?php
+			$popular = $this->get('popular');
+			if(isset($popular[0]['id'])) {
+				echo 'Popular Searches : ';
+				foreach($popular as $term) {
+					echo '<a href="' . href('/home?q=' . $term['term']) . '">'  . $term['term'] . '</a>&nbsp;';
+				}
+			}
+		?>
 		<br />&nbsp;
 	</div>
 

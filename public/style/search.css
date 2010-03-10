@@ -1,5 +1,7 @@
 body { font-size: 15px; font-family: Georgia; }
-.searchInput { padding: 7px; font-size: 50px; border: 1px solid #CCCCCC; font-weight: bold; font-family: "Trebuchet MS"; width: 935px; background-color: #F7F7F7; }
+a, a:visited { color: #00B0CC; }
+a:hover { color: #000000; }
+.searchInput { padding: 7px; font-size: 50px; border: 1px solid #CCCCCC; font-weight: bold; font-family: "Trebuchet MS"; width: 935px; background-color: #F7F7F7; text-shadow: #AAAAAA 3px 3px 4px; }
 .searchInput2 { padding: 4px; font-size: 25px; border: 1px solid #CCCCCC; width: 800px; background-color: #F7F7F7; }
 .searchSubmit { padding: 4px; font-size: 25px; border: 1px solid #CCCCCC; font-weight: bold; font-family: "Trebuchet MS"; width: 200px; background-color: #F7F7F7; }
 .number { padding: 5px 0px; color: #777777; font-size: 18px; text-align: center;}

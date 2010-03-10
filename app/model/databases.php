@@ -45,6 +45,7 @@
       $this->construct($database, "searches", array(
 				"id" => "int",
 				"term" => "varchar_256",
+				"count" => "int",
 				"date" => "int"
       ));
     }

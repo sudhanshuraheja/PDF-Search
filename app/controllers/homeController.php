@@ -38,6 +38,7 @@
 		public function base() {
 			$results = array();
 			$query = isset($_GET['q']) ? $_GET['q'] : false;
+
 			$search = $query;
 
 			if($query !== false) {
@@ -47,6 +48,25 @@
 
 				$scores = array();
 				$terms = explode(' ', $query);
+
+				$db_searches = new searches($this->getDb());
+				foreach($terms as $term) {
+					if($term != '') {
+						$old = $db_searches->select('*', 'WHERE term="'  . $term . '"');
+						if(isset($old[0]['id'])) {
+							$db_searches->update(array(
+								'count' => ++$old[0]['count'],
+								'date' => time()
+							), 'WHERE term="' . $term . '"');
+						} else {
+							$db_searches->insert(array(
+								'term' => $term,
+								'count' => 1,
+								'date' => time()
+							));
+						}
+					}
+				}
 
 				$term_weight = 0.1;
 				$wpm_weight = 7;
@@ -93,6 +113,9 @@
 				$this->set('results', $results);
 			}
 			$this->set('search', $search);
+
+			$searches = new searches($this->getDb());
+			$this->set('popular', $searches->select('*', 'ORDER BY count DESC LIMIT 0, 10'));
 		}
 
 	}
