@@ -68,14 +68,14 @@
 					}
 				}
 
-				$term_weight = 0.1;
-				$wpm_weight = 7;
-				$count_weight = 135;
+				$term_weight = 0.05;
+				$wpm_weight = 5; //7
+				$count_weight = 150; //135
 
 				$count = 0;
 				foreach($terms as $term) {
 					$term = 'indx-' . $stemmer->Stem($term);
-					$data = $index->select('*', 'WHERE stem="' . $term . '" ORDER BY wpm DESC, count DESC');
+					$data = $index->select('*', 'WHERE stem="' . $term . '" ORDER BY wpm DESC, count DESC LIMIT 0, 100');
 					foreach($data as $file_data) {
 						$file_id = $file_data['file'];
 						$wpm = $file_data['wpm'];

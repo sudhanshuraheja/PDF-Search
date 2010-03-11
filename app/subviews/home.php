@@ -33,6 +33,8 @@
 		$class = ( ($count % 2) == 0 ) ? '' : 'odd';
 		$max_score = ($result['score'] > $max_score) ? $result['score'] : $max_score;
 		$link = ( isset($result['link']) && ($result['link'] != '')) ? $result['link'] : 'http://www.google.com/search?q=' . urlencode($result['name'] . ' filetype:pdf');
+		$accuracy = round(( ($result['score'] / $max_score) * 100), 0);
+		if($accuracy > 29) {
 ?>
 
 	<div class='span-24 slot <?php echo $class; ?>'>
@@ -40,15 +42,16 @@
 		<div class='span-18'>
 			<div class='span-18 last title'><?php echo str_replace('-', ' ', $result['name']); ?></div>
 			<div class='span-18 last'>
-				<div class='span-3 download'><a target='_blank' href='<?php echo href('/public/books/' . $result['name'] . '.txt') ?>'>Download Text</a></div>
+				<div class='span-3 download'><a target='_blank' href='<?php echo href('/public/books/' . substr($result['name'], 0, strlen($result['name']) - 4) . '.txt') ?>'>Download Text</a></div>
 				<div class='span-3 download'><a target='_blank' href='<?php echo $link; ?>'>Download PDF</a></div>
 				<div class='span-12 last'>&nbsp;</div>
 			</div>
 		</div>
-		<div class='span-4 last accuracy'><?php echo round(( ($result['score'] / $max_score) * 100), 0) ?></div>
+		<div class='span-4 last accuracy'><?php echo $accuracy; ?></div>
 	</div>
 
 <?php
+		}
 	}
 
 	if( (strlen($search) > 0) && (count($results) == 0) ) {

@@ -1,0 +1,3 @@
+./run process downloadFiles
+./run process createText
+./run process createIndexes
